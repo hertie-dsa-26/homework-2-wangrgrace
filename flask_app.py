@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request 
+from flask import Flask, render_template, request
 
 from helper import perform_calculation, convert_to_float
 
