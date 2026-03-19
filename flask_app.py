@@ -44,10 +44,14 @@ def calculate():
 @app.route('/circle', methods=['GET', 'POST']) # Q1b: circle.html
 def circle_calculator():
     if request.method == 'POST':
-        radius = convert_to_float(value = request.form['radius']) # convert_to_float keeps formatting consistent
+        radius_str = request.form.get('radius', '')
+        try:
+            radius = convert_to_float(value=radius_str)  # convert_to_float keeps formatting consistent
+        except ValueError:
+            return render_template('circle.html', printed_result="Cannot perform calculation with this radius")
         c = Circle(radius)
         perimeter = c.perimeter()
-        return render_template('circle.html', printed_result = str(perimeter)) # use str() to convert the perimeter so it can be printed in the html file
+        return render_template('circle.html', printed_result=str(perimeter)) # use str() to convert the perimeter so it can be printed in the html file
 
     return render_template('circle.html')
 
