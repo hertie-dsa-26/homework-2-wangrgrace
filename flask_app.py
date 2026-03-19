@@ -50,3 +50,6 @@ def circle_calculator():
         return render_template('circle.html', printed_result = str(perimeter)) # use str() to convert the perimeter so it can be printed in the html file
 
     return render_template('circle.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
